@@ -29,6 +29,13 @@ export const signUp = async(req,res,next)=>{
         await session.commitTransaction();
         session.endSession();
 
+
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: true,      
+            sameSite: 'none',    
+            maxAge: 1000 * 60 * 60 * 24 * 7,  
+        })
         res.status(200).json({
             success:true,
             message:'User created successfully',
@@ -78,12 +85,12 @@ export const logIn = async(req,res,next)=>{
 
         const token = jwt.sign({userId:user._id},JWT_SECRET,{expiresIn:JWT_EXPIRES_IN});
 
-        res.cookie('token',token,{
-            httpOnly:true,
-            secure:true,
-            sameSite:'lax',
-            maxAge:1000*60*60*24,
-        });
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: true,        
+            sameSite: 'none',    
+            maxAge: 1000 * 60 * 60 * 24 * 7, 
+        })
 
         res.status(200).json({
             success:true,
@@ -100,13 +107,11 @@ export const logIn = async(req,res,next)=>{
 
 export const signOut = async(req,res,next)=>{
 
-    res.clearCookie('token');
-    // res.cookie('token',{
-    //     httpOnly:true,
-    //     secure:false,
-    //     sameSite:'none',
-    //     path:'/',
-    // });
+    res.clearCookie('token', {
+  httpOnly: true,
+  secure: true,
+  sameSite: 'none',
+})
 
     try{
         res.status(200).json({
