@@ -1,4 +1,4 @@
-WattTrack Backend
+Smart electricity tracker(WattTrack) Backend
 REST API server for WattTrack — an electricity bill tracker that lets users manage bills, appliances, and view usage analytics.
 Built with Node.js, Express, and MongoDB.
 
@@ -64,4 +64,4 @@ npm start       # Start normally (production)
 
 Frontend
 The frontend for Smart electricity app is a separate React app.
-Repo: watttrack-frontend
+Repo: https://github.com/vijaycode12/Smart-electricity-frontend.git
